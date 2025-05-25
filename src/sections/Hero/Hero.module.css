@@ -6,6 +6,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  padding-top: 1.6rem; /* spacing under fixed navbar */
 }
 
 .hero::before,
@@ -14,7 +15,7 @@
   position: absolute;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(255, 0, 0, 0.15), transparent 70%); /* Red glow */
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.15), transparent 70%);
   border-radius: 50%;
   z-index: 0;
   animation: float 8s ease-in-out infinite alternate;
@@ -35,7 +36,7 @@
 .container {
   width: calc(100vw - 1rem);
   max-width: 1500px;
-  padding: 7.5rem;
+  padding: clamp(2rem, 5vw, 7.5rem);
   background: #1a1a1a;
   border-radius: 16px;
   box-shadow: 0 15px 35px rgba(255, 0, 0, 0.1);
@@ -47,6 +48,7 @@
   overflow: hidden;
   box-sizing: border-box;
   flex-wrap: wrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .container:hover {
@@ -62,12 +64,13 @@
   animation: fadeSlideRight 1.5s ease forwards;
   min-width: 280px;
   color: #f3f3f3;
+  word-break: break-word;
 }
 
 .typingHeading {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 1.2rem;
-  background: linear-gradient(90deg, #e50914, #b81d24); /* Netflix red gradient */
+  background: linear-gradient(90deg, #e50914, #b81d24);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 900;
@@ -92,22 +95,33 @@
 
 .cursor {
   display: inline-block;
-  background-color: #fff !important;
+  background-color: #ffffff;
   margin-left: 4px;
   width: 3px;
+  height: 1.3em;
   animation: blink 1s infinite;
   border-radius: 2px;
   vertical-align: bottom;
-  height: 1.3em;
-  color: transparent; /* If any color is inherited */
+  mix-blend-mode: normal;
 }
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
 .subheading {
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
   margin-bottom: 2.5rem;
   color: #cbd5e1;
   line-height: 1.8;
   max-width: 700px;
   font-weight: 600;
+  text-align: left;
 }
 
 .cta {
@@ -149,6 +163,25 @@
 .logo:hover {
   transform: scale(1.05);
 }
+
+/* Adaptive support for “Request Desktop Site” on mobile */
+@media screen and (max-height: 600px) and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .text, .image {
+    align-items: center;
+    text-align: center;
+  }
+  .subheading {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* General Mobile Support */
 @media (max-width: 768px) {
   .typingHeading {
     font-size: 2.2rem;
@@ -156,23 +189,21 @@
 
   .subheading {
     font-size: 1.2rem;
+    text-align: center;
   }
 
   .cta {
     font-size: 1rem;
     padding: 1rem 2rem;
   }
-}
-@media (max-width: 768px) {
+
   .container {
-    padding: 2rem 1rem 3rem; /* Top padding reduced */
-    margin-top: 3rem; /* Add breathing room below the navbar */
+    padding: 2rem 1rem 3rem;
+    margin-top: 3rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-@media (max-width: 768px) {
-  .hero {
-    padding-top: 1.6rem; /* Equal or slightly more than your fixed navbar height */
-  }
-}
 
   .text, .image {
     flex: unset;
@@ -180,10 +211,4 @@
     text-align: center;
     align-items: center;
   }
-
-  .subheading {
-    text-align: center;
-  }
 }
-
-/* Retain animations and media queries as-is */
