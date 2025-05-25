@@ -19,7 +19,7 @@ const FadeIn = ({ children }) => {
     } else {
       controls.start({ opacity: 0, y: 60 });
     }
-  }, [inView]);
+  }, [inView,controls]);
 
   return (
     <motion.div

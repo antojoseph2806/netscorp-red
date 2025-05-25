@@ -27,7 +27,7 @@ const Hero = () => {
     } else {
       controls.start({ opacity: 0, y: 40 });
     }
-  }, [inView]);
+  }, [inView,controls]);
 
   useEffect(() => {
     let timer;

@@ -21,7 +21,7 @@ const About = () => {
     } else {
       controls.start({ opacity: 0, y: 60 }); // reset when out of view
     }
-  }, [inView]);
+  }, [inView,controls]);
 
   return (
     <section id="about" className={styles.about} ref={ref}>
