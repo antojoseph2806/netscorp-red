@@ -1,0 +1,149 @@
+.about {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #141414, #1f1f1f); /* Netflix-style dark */
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  color: #e5e5e5;
+}
+
+/* Container layout */
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Top Heading */
+.sectionHeading {
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 auto 2rem;
+  color: #ffffff;
+  width: 100%;
+}
+
+.underline {
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, #e50914, #b81d24); /* Netflix red underline */
+  margin: 10px auto 0;
+  border-radius: 2px;
+  animation: slideIn 0.7s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
+
+/* Image section */
+.image {
+  flex: 1 1 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(229, 9, 20, 0.15); /* Red-tinted shadow */
+}
+
+/* Content section */
+.content {
+  flex: 1 1 55%;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  color: #d4d4d4;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Feature boxes */
+.featureBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e50914;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 6px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  color: #fff;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  background-color: #b81d24;
+}
+
+.subheading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+}
+
+.subtext {
+  font-size: 0.95rem;
+  color: #b3b3b3;
+  line-height: 1.6;
+}
+
+.finalText {
+  font-size: 1rem;
+  color: #cccccc;
+  margin-top: 1.5rem;
+  line-height: 1.7;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image,
+  .content {
+    flex: 1 1 100%;
+  }
+
+  .featureBox {
+    justify-content: center;
+    text-align: left;
+  }
+}

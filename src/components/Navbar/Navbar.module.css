@@ -1,0 +1,134 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #141414; /* Netflix dark navbar */
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(255, 0, 0, 0.05); /* subtle red glow */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  padding: 0.25rem 0;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.25));
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  transition: all 0.3s ease;
+}
+
+.navLinks li a {
+  color: #f2f2f2;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.navLinks li a:hover,
+.navLinks li a.active {
+  color: #e50914; /* Netflix red */
+  font-weight: 600;
+}
+
+.navLinks li a.active::after,
+.navLinks li a:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background-color: #e50914;
+}
+
+.activeLink {
+  color: #e50914;
+}
+
+/* Hamburger menu base */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 15;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1a1a1a;
+    flex-direction: column;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    gap: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .navLinks li {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .navLinks li a {
+    color: #f2f2f2;
+  }
+
+  .navLinks.active {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}

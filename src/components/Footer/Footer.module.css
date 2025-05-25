@@ -1,0 +1,22 @@
+.footer {
+  background: #141414; /* Netflix dark footer */
+  color: #e5e5e5;       /* Light text for readability */
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer a {
+  color: #e50914;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ff4a4a;
+  text-decoration: underline;
+}
