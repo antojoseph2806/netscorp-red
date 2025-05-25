@@ -1,8 +1,7 @@
-// src/sections/Services/Services.jsx
 import React from "react";
 import styles from "./Services.module.css";
-import FadeIn from "../../components/FadeIn";
 import { FaCode, FaLaptopCode, FaTools, FaServer } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -27,10 +26,28 @@ const services = [
   },
 ];
 
+// Animation variant for stagger effect
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: (i) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
+
 const Services = () => {
   return (
     <section id="services" className={styles.services}>
-      <FadeIn>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <h2 className={styles.heading}>
           Our Services
           <span className={styles.underline}></span>
@@ -38,16 +55,22 @@ const Services = () => {
         <p className={styles.subheading}>
           At NetScorp, we offer essential web services to help you establish and maintain a strong online presence.
         </p>
+
         <div className={styles.servicesGrid}>
           {services.map((service, index) => (
-            <div key={index} className={styles.card}>
+            <motion.div
+              key={index}
+              className={styles.card}
+              variants={cardVariants}
+              custom={index}
+            >
               <div className={styles.icon}>{service.icon}</div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </FadeIn>
+      </motion.div>
     </section>
   );
 };

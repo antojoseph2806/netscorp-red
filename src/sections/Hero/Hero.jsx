@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import men from "../../assets/images/logo4.png";
 
 const Hero = () => {
-  const fullText = "NetScorp."; // Only the animated part
+  const fullText = "NetScorp.";
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
@@ -21,13 +21,13 @@ const Hero = () => {
     if (inView) {
       controls.start({
         opacity: 1,
-        y: 0,
+        scale: 1,
         transition: { duration: 0.8, ease: "easeOut" },
       });
     } else {
-      controls.start({ opacity: 0, y: 40 });
+      controls.start({ opacity: 0, scale: 0.8 });
     }
-  }, [inView,controls]);
+  }, [inView, controls]);
 
   useEffect(() => {
     let timer;
@@ -60,7 +60,7 @@ const Hero = () => {
     <section id="home" className={styles.hero} ref={ref}>
       <motion.div
         className={styles.container}
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, scale: 0.8 }}
         animate={controls}
       >
         <motion.div className={styles.text}>

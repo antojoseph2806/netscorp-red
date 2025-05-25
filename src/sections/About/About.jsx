@@ -15,19 +15,22 @@ const About = () => {
     if (inView) {
       controls.start({
         opacity: 1,
-        y: 0,
+        scale: 1,
         transition: { duration: 0.8, ease: "easeOut" },
       });
     } else {
-      controls.start({ opacity: 0, y: 60 }); // reset when out of view
+      controls.start({
+        opacity: 0,
+        scale: 0.9,
+      });
     }
-  }, [inView,controls]);
+  }, [inView, controls]);
 
   return (
     <section id="about" className={styles.about} ref={ref}>
       <motion.div
         className={styles.container}
-        initial={{ opacity: 0, y: 60 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={controls}
       >
         <h1 className={styles.sectionHeading}>

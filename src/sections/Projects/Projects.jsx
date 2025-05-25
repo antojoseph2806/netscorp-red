@@ -1,7 +1,6 @@
-// src/sections/Projects/Projects.jsx
 import React from "react";
 import styles from "./Projects.module.css";
-import FadeIn from "../../components/FadeIn";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -9,14 +8,14 @@ const projects = [
     description: "A professional website developed for a bakery business, Cochin Distributors.",
     image: "https://st.depositphotos.com/1772676/1289/i/450/depositphotos_12895174-stock-photo-bakery-products.jpg",
     github: "",
-    demo: "https://cochindistributors.onrender.com/", // add your actual URL or leave as "#" if not live
+    demo: "https://cochindistributors.onrender.com/",
   },
   {
     title: "Pollution Testing Centers",
     description: "Informative and service-oriented website for pollution testing centers.",
     image: "https://www.kbb.com/wp-content/uploads/2022/08/close-up-of-a-auto-mechanic-measuring-exhaust-gases-on-a-car-at-picture-id1386424980.jpg?w=918",
     github: "",
-    demo: "https://pollutiontesting.com", // add your actual URL or leave as "#"
+    demo: "https://demo.com",
   },
   {
     title: "Portfolio Website",
@@ -27,10 +26,27 @@ const projects = [
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: (i) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
+
 const Projects = () => {
   return (
     <section id="projects" className={styles.projects}>
-      <FadeIn>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <h2>
           Our Projects
           <span className={styles.underline}></span>
@@ -38,14 +54,20 @@ const Projects = () => {
         <p className={styles.subheading}>
           A selection of our latest work showcasing different technologies and design solutions.
         </p>
+
         <div className={styles.grid}>
           {projects.map((project, idx) => (
-            <a
+            <motion.a
               key={idx}
               href={project.demo || "#"}
               className={styles.card}
               target="_blank"
               rel="noreferrer"
+              custom={idx}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={cardVariants}
             >
               <img src={project.image} alt={project.title} />
               <div className={styles.content}>
@@ -56,10 +78,10 @@ const Projects = () => {
                   {project.demo && <span>View website</span>}
                 </div>
               </div>
-            </a>
+            </motion.a>
           ))}
         </div>
-      </FadeIn>
+      </motion.div>
     </section>
   );
 };
